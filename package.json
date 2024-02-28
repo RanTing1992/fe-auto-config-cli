@@ -1,0 +1,28 @@
+{
+  "name": "fe-auto-config-cli",
+  "version": "0.0.1",
+  "description": "add lint config and install dependencies auto",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RanTing1992/fe-auto-config-cli.git"
+  },
+  "keywords": [
+    "eslint",
+    "git-hooks",
+    "prittier",
+    "Stylelint",
+    "commitlint",
+    "husky",
+    "lint-staged"
+  ],
+  "author": "RanTing",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RanTing1992/fe-auto-config-cli/issues"
+  },
+  "homepage": "https://github.com/RanTing1992/fe-auto-config-cli#readme"
+}
