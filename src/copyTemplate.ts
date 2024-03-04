@@ -2,17 +2,23 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 import deepMerge from '../utils/deepMerge'
-export function copy(templateName:string){
-    const cwd = process.cwd()
-    const root = path.join(cwd,'./')
-    const templateRoot = path.resolve(__dirname,'../template')
-    const fileTemplate = path.resolve(templateRoot,templateName)
-    const files = fs.readFileSync(fileTemplate)
-    console.log(files,'这是个什么')
-    for(const file of files){
-        if(file ==='package.json'){
 
-        }
+export function copy(templateName: string) {
+  const cwd = process.cwd()
+  const root = path.join(cwd, './')
+  const templateRoot = path.resolve(__dirname, '../template')
+  const eslintTemplate = path.resolve(templateRoot, templateName)
+  const files = fs.readdirSync(eslintTemplate)
+
+  for (const file of files) {
+    if (file === 'package.json') {
+      const existingPkg = JSON.parse(fs.readFileSync('./package.json','utf8'))
+      const pkg = JSON.parse(fs.readFileSync(path.join(eslintTemplate, file),'utf8'))
+      const updatedPkg = deepMerge(existingPkg, pkg)
+      fs.writeFileSync('./package.json', JSON.stringify(updatedPkg, null, 2) + '\n')
+    } else {
+      const targetPath = path.join(root, file)
+      fs.copyFileSync(path.join(eslintTemplate, file), targetPath)
     }
-
+  }
 }
